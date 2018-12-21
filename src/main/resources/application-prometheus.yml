@@ -1,0 +1,7 @@
+management:
+  endpoints:
+    metrics:
+      enabled: true
+    web:
+      exposure:
+        include: info,health,prometheus
