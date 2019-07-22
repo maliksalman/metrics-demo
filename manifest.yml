@@ -1,0 +1,9 @@
+---
+applications:
+- name: metrics-demo
+  memory: 1G
+  path: build/libs/metrics-demo-0.0.1-SNAPSHOT.jar
+  buildpacks:
+    - java_buildpack_offline
+  env:
+    SPRING_PROFILES_ACTIVE: prometheus

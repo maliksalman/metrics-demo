@@ -4,4 +4,4 @@ management:
       enabled: true
     web:
       exposure:
-        include: info,health,prometheus
+        include: info,health,metrics,prometheus

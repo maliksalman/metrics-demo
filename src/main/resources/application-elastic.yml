@@ -1,0 +1,14 @@
+management:
+  endpoints:
+    metrics:
+      enabled: true
+    web:
+      exposure:
+        include: info,health,metrics
+
+  metrics:
+    export:
+      elastic:
+        enabled: true
+        step: 30s
+        index: metrics

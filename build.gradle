@@ -1,9 +1,9 @@
 buildscript {
 	repositories {
-		mavenCentral()
+        mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.1.RELEASE")
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
 	}
 }
 
@@ -16,11 +16,12 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-web')
 	implementation('org.springframework.boot:spring-boot-starter-actuator')
 	implementation('io.micrometer:micrometer-registry-prometheus')
+	implementation('io.micrometer:micrometer-registry-elastic')
 }
