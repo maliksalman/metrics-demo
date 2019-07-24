@@ -3,7 +3,7 @@
 Demo program to see capabilities of micrometer based metrics in a spring-boot app. Once running, the app will generate simulated load on its own so we can see some metrics in action. By default, two metrics are emitted - `app.foo` (a timer) and `app.bar` (a counter). All metrics will be exposed with two dimensions:
 
 - `env` - set to `dev`
-- `name` - set to `demo`
+- `app` - set to `demo`
 
 If you want to add to see some addition simulated metrics, the following can be invoked:
 
@@ -14,7 +14,7 @@ POST /metrics/timer/{metric-name}/{region}/{maxWaitMillis}
 This will generate a timer metric under the name `app.{metric-name}` and the call will artificially take upto the `maxWaitMillis` (milliseconds) to execute. This metric will also add the `region` dimension set to value passed in the URL.
 
 ```
-POST /metrics/metrics/counter/{metric-name}/{region}
+POST /metrics/counter/{metric-name}/{region}
 ```
 
 This will generate a counter metric under the name `app.{name}`. This metric will also add the `region` dimension set to value passed in the URL.
