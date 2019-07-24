@@ -42,7 +42,7 @@ This will run the app with the metrics exposed on `/actuator/metrics` endpoint
 SPRING_PROFILES_ACTIVE=prometheus ./gradlew bootRun
 ```
 
-This will run the app with the metrics exposed on `/actuator/prometheus` endpoint. Prometheus integration with micrometer is pull based meaning that the prometheus will pull the metrics using the endpoint on the spring-boot app. 
+This will run the app with the metrics exposed on `/actuator/prometheus` endpoint. Prometheus integration with micrometer is pull based which means prometheus will pull the metrics using the endpoint on spring-boot app. 
 
 ### Metrics logged on STDOUT
 
