@@ -10,5 +10,15 @@ management:
     export:
       elastic:
         enabled: true
-        step: 30s
+        step: 1m
         index: metrics
+        autoCreateIndex: false
+
+logging:
+  level:
+    org.apache.http: DEBUG
+    io.micrometer.elastic: DEBUG
+
+spring:
+  http:
+    log-request-details: true

@@ -1,4 +1,4 @@
-package com.smalik.metrics;
+package com.smalik.metrics.logging;
 
 import io.micrometer.core.instrument.Meter;
 import io.micrometer.core.instrument.MeterRegistry;
@@ -8,14 +8,15 @@ import io.micrometer.core.instrument.distribution.DistributionStatisticConfig;
 import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 @Configuration
-public class MetricsConfiguration {
+@Profile("logging")
+public class LoggingConfiguration {
 
 	@Bean
 	public MeterRegistryCustomizer<MeterRegistry> customizeMetrics() {
 		return registry -> registry.config()
-			.commonTags("env", "dev", "app", "demo")
 			.meterFilter(new MeterFilter() {
 				@Override
 				public MeterFilterReply accept(Meter.Id id) {

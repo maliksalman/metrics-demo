@@ -19,12 +19,13 @@ public class MetricsDemoController {
 		this.random = new Random();
 	}
 
-	@PostMapping("/metrics/timer/{name}/{maxWaitMillis}")
+	@PostMapping("/metrics/timer/{name}/{region}/{maxWaitMillis}")
 	public void generateArtificalTimers(
 			@PathVariable("name") String name,
+			@PathVariable("region") String region,
 			@PathVariable("maxWaitMillis") int millis) {
 
-		Timer timer = metrics.timer("app." + name);
+		Timer timer = metrics.timer("app." + name, "region", region);
 		timer.wrap(() -> {
 			try {
 				Thread.sleep((int)random.nextInt(millis));
@@ -34,9 +35,10 @@ public class MetricsDemoController {
 		}).run();
 	}
 
-	@PostMapping("/metrics/counter/{name}")
+	@PostMapping("/metrics/counter/{name}/{region}")
 	public void generateArtificialCounters(
-			@PathVariable("name") String name) {
-		metrics.counter("app." + name).increment();
+			@PathVariable("name") String name,
+            @PathVariable("region") String region) {
+		metrics.counter("app." + name, "region", region).increment();
 	}
 }

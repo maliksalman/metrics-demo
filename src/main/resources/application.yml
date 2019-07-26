@@ -1,5 +1,10 @@
 management:
   metrics:
+
     export:
       elastic:
         enabled: false
+
+    tags:
+      app: demo
+      env: dev
