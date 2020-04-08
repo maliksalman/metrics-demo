@@ -3,6 +3,7 @@ package com.smalik.metrics;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Random;
 
@@ -11,23 +12,29 @@ import java.util.Random;
 public class LoadGenerator {
 
 	private MetricsDemoController controller;
+	private LoadController loadController;
 	private Random random;
 
-	public LoadGenerator(MetricsDemoController controller) {
+	public LoadGenerator(MetricsDemoController controller, LoadController loadController) {
 		this.controller = controller;
+		this.loadController = loadController;
 		this.random = new Random();
 	}
 
 	@Scheduled(fixedDelay = 5000)
 	public void callEastTimers() {
-	    makeSomeCalls("foo", "east", 250);
-	    makeSomeCalls("foo", "east", 500);
+		if (!loadController.isPaused()) {
+			makeSomeCalls("foo", "east", 250);
+			makeSomeCalls("foo", "east", 500);
+		}
 	}
 
 	@Scheduled(fixedDelay = 2500)
 	public void callWestTimers() {
-	    makeSomeCalls("foo", "west", 50);
-	    makeSomeCalls("foo", "west", 100);
+		if (!loadController.isPaused()) {
+			makeSomeCalls("foo", "west", 50);
+			makeSomeCalls("foo", "west", 100);
+		}
 	}
 
 	private void makeSomeCalls(String name, String region, int max) {
@@ -38,11 +45,15 @@ public class LoadGenerator {
 
 	@Scheduled(fixedDelay = 5000)
 	public void callEastCounter() {
-		controller.generateArtificialCounters("bar", "east");
+		if (!loadController.isPaused()) {
+			controller.generateArtificialCounters("bar", "east");
+		}
 	}
 
     @Scheduled(fixedDelay = 2500)
     public void callWestCounter() {
-        controller.generateArtificialCounters("bar", "west");
+		if (!loadController.isPaused()) {
+			controller.generateArtificialCounters("bar", "west");
+		}
     }
 }

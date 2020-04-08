@@ -1,9 +1,9 @@
----
 applications:
-- name: metrics-demo
+- name: smalik-metrics-demo
   memory: 1G
   path: build/libs/metrics-demo-0.0.1-SNAPSHOT.jar
   buildpacks:
-    - java_buildpack_offline
+    - java_buildpack
   env:
-    SPRING_PROFILES_ACTIVE: prometheus
+    SPRING_PROFILES_ACTIVE: prometheus-rsproxy
+    MANAGEMENT_METRICS_EXPORT_PROMETHEUS_RSOCKET_HOST: home.salmanmalik.me

@@ -1,0 +1,5 @@
+management:
+  metrics:
+    tags:
+      instance: metrics-demo-${CF_INSTANCE_INDEX}
+      env: pws

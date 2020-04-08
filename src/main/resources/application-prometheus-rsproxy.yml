@@ -1,0 +1,18 @@
+management:
+  endpoints:
+    metrics:
+      enabled: true
+    web:
+      exposure:
+        include: info,health,metrics
+
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+        rsocket:
+          enabled: true
+          port: 7001
+          max-retries: 1000
+          first-backoff: 10s
+          max-backoff: 10m

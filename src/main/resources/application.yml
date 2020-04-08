@@ -4,7 +4,11 @@ management:
     export:
       elastic:
         enabled: false
+      prometheus:
+        enabled: false
+        rsocket:
+          enabled: false
 
     tags:
-      app: demo
+      app: metrics-demo
       env: dev
