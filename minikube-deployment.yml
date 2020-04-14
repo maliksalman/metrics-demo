@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metrics-demo
+  labels:
+    app: metrics-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: metrics-demo
+  template:
+    metadata:
+      labels:
+        app: metrics-demo
+      annotations:
+        metrics.enabled: 'true'
+        metrics.path: '/actuator/prometheus'
+        metrics.port: '8080'
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 5000
+      containers:
+        - name: metrics-demo
+          image: metrics-demo:local
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: prometheus
+          ports:
+            - name: web
+              protocol: TCP
+              containerPort: 8080
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
