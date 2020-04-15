@@ -38,3 +38,18 @@ spec:
             limits:
               cpu: 500m
               memory: 512Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: metrics-demo
+  labels:
+    app: metrics-demo
+spec:
+  type: LoadBalancer
+  selector:
+    app: metrics-demo
+  ports:
+    - name: web
+      port: 80
+      targetPort: web
