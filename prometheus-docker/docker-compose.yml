@@ -1,0 +1,20 @@
+---
+version: "3"
+services:
+
+  grafana:
+    image: grafana/grafana:6.7.2
+    container_name: metrics-grafana
+    volumes:
+      - "./datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml"
+      - "./grafana.ini:/etc/grafana/grafana.ini"
+    ports:
+    - "3000:3000"
+
+  prometheus:
+    image: prom/prometheus:v2.16.0
+    container_name: metrics-prometheus
+    volumes:
+      - "./prometheus.yml:/etc/prometheus/prometheus.yml"
+    ports:
+      - "9191:9090"
