@@ -18,3 +18,10 @@ services:
       - "./prometheus.yml:/etc/prometheus/prometheus.yml"
     ports:
       - "9191:9090"
+
+  rproxy:
+    image: micrometermetrics/prometheus-rsocket-proxy:0.9.0
+    container_name: rproxy
+    ports:
+    - "8181:8080"
+    - "7001:7001"
